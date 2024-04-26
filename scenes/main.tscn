@@ -1,3 +1,12 @@
-[gd_scene format=3 uid="uid://dsrh5ode2ywrw"]
+[gd_scene load_steps=3 format=3 uid="uid://dsrh5ode2ywrw"]
 
-[node name="Node3D" type="Node3D"]
+[ext_resource type="PackedScene" uid="uid://c1ay1u8h0o466" path="res://scenes/world.tscn" id="1_ivf2h"]
+[ext_resource type="Script" path="res://scripts/AlanCam.gd" id="2_3kfad"]
+
+[node name="main" type="Node"]
+
+[node name="world" parent="." instance=ExtResource("1_ivf2h")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.226991, 0.973897, 0, -0.973897, 0.226991, 0, 14.8145, 6.15217)
+script = ExtResource("2_3kfad")
