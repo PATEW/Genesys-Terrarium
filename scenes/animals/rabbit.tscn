@@ -5,7 +5,6 @@
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_el6wn"]
 resource_name = "lambert2SG"
-albedo_color = Color(1, 1, 1, 1)
 albedo_texture = ExtResource("2_ger61")
 emission_enabled = true
 texture_filter = 2
