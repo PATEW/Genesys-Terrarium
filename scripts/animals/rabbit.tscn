@@ -1,5 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://culxnrrn2p5em"]
-
-[ext_resource type="PackedScene" uid="uid://ctshpefamd88m" path="res://assets/models/animals/bunny/Rabbit.glb" id="1_ncoa7"]
-
-[node name="Rabbit" instance=ExtResource("1_ncoa7")]

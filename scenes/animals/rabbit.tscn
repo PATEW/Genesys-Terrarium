@@ -47,11 +47,11 @@ shadow_mesh = SubResource("ArrayMesh_qrii7")
 size = Vector3(46.0789, 61.3022, 85.8056)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4q1ud"]
-radius = 34.2347
-height = 105.273
+radius = 51.6023
+height = 130.464
 
 [node name="Rabbit" type="CharacterBody3D"]
-transform = Transform3D(0.03, 0, 0, 0, 0.03, 0, 0, 0, 0.03, 0, 1, 0)
+transform = Transform3D(0.03, 0, 0, 0, 0.03, 0, 0, 0, 0.03, 0, 1.09459, 0)
 script = ExtResource("2_orknr")
 
 [node name="Geo_Rabbit" type="MeshInstance3D" parent="."]
@@ -63,15 +63,18 @@ skeleton = NodePath("")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.304536, -3.81324, 0.20722)
 shape = SubResource("BoxShape3D_65vao")
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 1.5
+[node name="walk_timer" type="Timer" parent="."]
+wait_time = 6.0
 autostart = true
 
+[node name="stop_timer" type="Timer" parent="."]
+
 [node name="Clickable_Area" type="Area3D" parent="."]
+collision_layer = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Clickable_Area"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -14.7359, 0)
 shape = SubResource("CapsuleShape3D_4q1ud")
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="walk_timer" to="." method="_on_timer_timeout"]
 [connection signal="input_event" from="Clickable_Area" to="." method="_on_clickable_area_input_event"]
