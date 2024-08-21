@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=4 uid="uid://4gg7my3shlwo"]
+[gd_scene load_steps=8 format=4 uid="uid://4gg7my3shlwo"]
 
 [ext_resource type="Texture2D" uid="uid://khsh3pf2gk5b" path="res://assets/models/animals/bunny/Rabbit_Tex_Rabbit.png" id="2_ger61"]
 [ext_resource type="Script" path="res://scripts/animals/rabbit.gd" id="2_orknr"]
@@ -46,6 +46,10 @@ shadow_mesh = SubResource("ArrayMesh_qrii7")
 [sub_resource type="BoxShape3D" id="BoxShape3D_65vao"]
 size = Vector3(46.0789, 61.3022, 85.8056)
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4q1ud"]
+radius = 34.2347
+height = 105.273
+
 [node name="Rabbit" type="CharacterBody3D"]
 transform = Transform3D(0.03, 0, 0, 0, 0.03, 0, 0, 0, 0.03, 0, 1, 0)
 script = ExtResource("2_orknr")
@@ -63,4 +67,11 @@ shape = SubResource("BoxShape3D_65vao")
 wait_time = 1.5
 autostart = true
 
+[node name="Clickable_Area" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Clickable_Area"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -14.7359, 0)
+shape = SubResource("CapsuleShape3D_4q1ud")
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="input_event" from="Clickable_Area" to="." method="_on_clickable_area_input_event"]

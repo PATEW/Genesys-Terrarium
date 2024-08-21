@@ -1,0 +1,106 @@
+[gd_scene load_steps=4 format=3 uid="uid://b01yqvtmpxrix"]
+
+[ext_resource type="Script" path="res://scripts/HUD/entity_info.gd" id="1_4it4m"]
+[ext_resource type="Texture2D" uid="uid://ddamt6klrf8ry" path="res://assets/HUD/placeholder_entity_description_box.png" id="1_ojru3"]
+[ext_resource type="Texture2D" uid="uid://bk1xf24xo066w" path="res://assets/HUD/photos/rabbit.PNG" id="2_o7k6c"]
+
+[node name="entity_info" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4it4m")
+
+[node name="Menu Box" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -244.0
+offset_top = 15.0
+offset_right = -15.0
+offset_bottom = 369.0
+grow_horizontal = 0
+texture = ExtResource("1_ojru3")
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+
+[node name="Photo Panel" type="Panel" parent="Menu Box"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -97.5
+offset_top = 20.0
+offset_right = 100.5
+offset_bottom = 155.0
+grow_horizontal = 2
+
+[node name="photo" type="TextureRect" parent="Menu Box/Photo Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -82.5
+offset_top = -52.5
+offset_right = 82.5
+offset_bottom = 52.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_o7k6c")
+
+[node name="Stat List" type="VBoxContainer" parent="Menu Box"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -97.5
+offset_top = -13.0
+offset_right = 92.5
+offset_bottom = 161.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 6
+
+[node name="Name" type="RichTextLabel" parent="Menu Box/Stat List"]
+layout_mode = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+text = "Name:              Mr. Bunny
+"
+fit_content = true
+
+[node name="Species" type="RichTextLabel" parent="Menu Box/Stat List"]
+layout_mode = 2
+text = "Species:                  Rabbit"
+fit_content = true
+
+[node name="Health" type="RichTextLabel" parent="Menu Box/Stat List"]
+layout_mode = 2
+text = "Health:                         100"
+fit_content = true
+
+[node name="Hunger" type="RichTextLabel" parent="Menu Box/Stat List"]
+layout_mode = 2
+text = "Hunger:                        100"
+fit_content = true
+
+[node name="Thirst" type="RichTextLabel" parent="Menu Box/Stat List"]
+layout_mode = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+text = "Thirst:                           100"
+fit_content = true
+
+[node name="Reproduction" type="RichTextLabel" parent="Menu Box/Stat List"]
+layout_mode = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+text = "Reproduction:                 0
+"
+fit_content = true
