@@ -18,6 +18,7 @@ script = ExtResource("2_3kfad")
 [node name="entity_info" parent="." instance=ExtResource("4_ogi6q")]
 
 [node name="Rabbit" parent="." instance=ExtResource("3_jtlex")]
+transform = Transform3D(0.03, 0, 0, 0, 0.03, 0, 0, 0, 0.03, -5.82551, 2.49819, 0)
 entity_name = "afd"
 entity_health = 45
 entity_hunger = 50
@@ -25,6 +26,7 @@ entity_thirst = 125
 entity_reproduction = 175
 
 [node name="Rabbit2" parent="." instance=ExtResource("3_jtlex")]
+transform = Transform3D(0.03, 0, 0, 0, 0.03, 0, 0, 0, 0.03, 0, 2.09285, 11.1273)
 entity_name = "eeee"
 entity_health = 60
 entity_hunger = 110
