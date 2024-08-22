@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dbe54spvxre7t"]
+
+[ext_resource type="Script" path="res://scripts/grass_area.gd" id="1_a5wl4"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_5et11"]
+height = 1.0
+radius = 8.482
+
+[node name="GrassArea" type="Area3D"]
+script = ExtResource("1_a5wl4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_5et11")
