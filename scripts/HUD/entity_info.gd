@@ -12,6 +12,7 @@ extends Control
 func _ready():
 	self.visible = false
 
+#replace with dictionary so that plants dont have to pass hunger/thirst/repro
 func open_and_update_menu(new_name: String, new_species: String, new_health: int, new_hunger: int, new_thirst: int, new_reproduction: int):
 	stat_list_name.text = new_name
 	stat_list_species.text = new_species

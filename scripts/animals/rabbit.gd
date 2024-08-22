@@ -22,7 +22,10 @@ signal rabbit_clicked(name: String, species: String, health: int, hunger: int, t
 @onready var stop_timer = $stop_timer
 @onready var hop_tween: Tween
 
+@onready var entity_info = $"../entity_info"
+
 func _ready():
+	rabbit_clicked.connect(entity_info.open_and_update_menu)
 	randomize()
 	walk_timer.wait_time = movement_duration
 	walk_timer.one_shot = false
