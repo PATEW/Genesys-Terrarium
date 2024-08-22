@@ -15,6 +15,10 @@ run/main_scene="res://scenes/main.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://assets/icon.svg"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/donut_collision_polygon2D/plugin.cfg")
+
 [global_group]
 
 Clickable_Entity="include all things that can be clicked on to see their stats (do not include things like menu items)"
