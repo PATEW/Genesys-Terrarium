@@ -1,7 +1,10 @@
-[gd_scene load_steps=8 format=4 uid="uid://4gg7my3shlwo"]
+[gd_scene load_steps=9 format=4 uid="uid://4gg7my3shlwo"]
 
 [ext_resource type="Texture2D" uid="uid://khsh3pf2gk5b" path="res://assets/models/animals/bunny/Rabbit_Tex_Rabbit.png" id="2_ger61"]
 [ext_resource type="Script" path="res://scripts/animals/rabbit.gd" id="2_orknr"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_65vao"]
+size = Vector3(46.0789, 61.3022, 85.8056)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_el6wn"]
 resource_name = "lambert2SG"
@@ -43,37 +46,48 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_qrii7")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_65vao"]
-size = Vector3(46.0789, 61.3022, 85.8056)
-
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4q1ud"]
 radius = 51.6023
 height = 130.464
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_qmjns"]
+height = 288.082
+radius = 263.902
+
 [node name="Rabbit" type="CharacterBody3D"]
 transform = Transform3D(0.03, 0, 0, 0, 0.03, 0, 0, 0, 0.03, 0, 1.09459, 0)
+collision_layer = 4
+collision_mask = 17
 script = ExtResource("2_orknr")
+
+[node name="Wall_Floor_Collision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.304536, -3.81324, 0.20722)
+shape = SubResource("BoxShape3D_65vao")
 
 [node name="Geo_Rabbit" type="MeshInstance3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_pogth")
 skeleton = NodePath("")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.304536, -3.81324, 0.20722)
-shape = SubResource("BoxShape3D_65vao")
-
-[node name="walk_timer" type="Timer" parent="."]
-wait_time = 6.0
-autostart = true
-
-[node name="stop_timer" type="Timer" parent="."]
+[node name="Hitboxes" type="Node" parent="."]
 
 [node name="Clickable_Area" type="Area3D" parent="."]
+collision_layer = 32
+collision_mask = 0
+monitoring = false
+priority = 1
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Clickable_Area"]
+[node name="Clickable_Collision" type="CollisionShape3D" parent="Clickable_Area"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -14.7359, 0)
 shape = SubResource("CapsuleShape3D_4q1ud")
 
-[connection signal="timeout" from="walk_timer" to="." method="_on_timer_timeout"]
+[node name="Food_Sensor_Area" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="Food_Sensor_Collision" type="CollisionShape3D" parent="Food_Sensor_Area"]
+shape = SubResource("CylinderShape3D_qmjns")
+
 [connection signal="input_event" from="Clickable_Area" to="." method="_on_clickable_area_input_event"]
+[connection signal="area_entered" from="Food_Sensor_Area" to="." method="_on_food_sensor_area_area_entered"]

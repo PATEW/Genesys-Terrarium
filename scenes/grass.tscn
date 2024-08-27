@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dnk15bjp4jka"]
+[gd_scene load_steps=6 format=3 uid="uid://dnk15bjp4jka"]
 
 [ext_resource type="PackedScene" uid="uid://dm32bot7lvyxx" path="res://assets/models/grass/grass.glb" id="1_cygeb"]
 [ext_resource type="Script" path="res://scripts/grass.gd" id="2_04a6d"]
@@ -8,18 +8,38 @@ radius = 1.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_qvdlh"]
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_lmetr"]
+height = 2.01691
+radius = 1.57679
+
 [node name="Grass" instance=ExtResource("1_cygeb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.26668, 0, 1.35739)
+collision_layer = 2
+collision_mask = 17
 script = ExtResource("2_04a6d")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="11"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4589, 0.189877, -1.42398)
+[node name="Wall_Floor_Collision" type="CollisionShape3D" parent="." index="11"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 1.4589, 0.189877, -1.25125)
 shape = SubResource("SphereShape3D_2vc0x")
 
 [node name="Clickable_Area" type="Area3D" parent="." index="12"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25401, 0, -1.35342)
+collision_layer = 32
+collision_mask = 0
+monitoring = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Clickable_Area" index="0"]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 1.30017, 0, -1.79614)
+[node name="Clickable_Collision" type="CollisionShape3D" parent="Clickable_Area" index="0"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
 shape = SubResource("SphereShape3D_qvdlh")
+
+[node name="Detected_Area" type="Area3D" parent="." index="13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.27064, 0, -1.3838)
+collision_layer = 2
+collision_mask = 0
+monitoring = false
+
+[node name="Detected_Collision" type="CollisionShape3D" parent="Detected_Area" index="0"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+shape = SubResource("CylinderShape3D_lmetr")
 
 [connection signal="input_event" from="Clickable_Area" to="." method="_on_clickable_area_input_event"]

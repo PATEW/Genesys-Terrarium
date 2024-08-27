@@ -17,8 +17,17 @@ config/icon="res://assets/icon.svg"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/donut_collision_polygon2D/plugin.cfg")
+enabled=PackedStringArray()
 
 [global_group]
 
 Clickable_Entity="include all things that can be clicked on to see their stats (do not include things like menu items)"
+
+[layer_names]
+
+3d_physics/layer_1="Solid_Ground"
+3d_physics/layer_2="Grass"
+3d_physics/layer_3="Rabbit"
+3d_physics/layer_4="Fox"
+3d_physics/layer_5="Walls"
+3d_physics/layer_6="clickable"

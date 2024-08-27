@@ -17,7 +17,7 @@ height = 0.5
 radius = 50.0
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_7msjm"]
-radius = 42.722
+radius = 9.389
 
 [node name="world" type="Node3D"]
 script = ExtResource("1_nhjyf")
@@ -33,11 +33,55 @@ mesh = SubResource("CylinderMesh_bxly6")
 shape = SubResource("CylinderShape3D_3wjc5")
 
 [node name="GrassArea" parent="ground" instance=ExtResource("2_2qrnj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.605924, 0, -0.794966)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.3377, 0, -14.4356)
+min_grass = null
+max_grass = null
+grass_area_timeout = null
+spawn_active = null
+radius = null
 
 [node name="spawnArea" type="CollisionShape3D" parent="ground/GrassArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.280293, 0, 0)
 shape = SubResource("CylinderShape3D_7msjm")
+
+[node name="GrassArea2" parent="ground" instance=ExtResource("2_2qrnj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.2766, 0, -14.4356)
+min_grass = null
+max_grass = null
+grass_area_timeout = null
+spawn_active = null
+radius = null
+
+[node name="GrassArea3" parent="ground" instance=ExtResource("2_2qrnj")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 7.22998, 0, 22.7175)
+min_grass = null
+max_grass = null
+grass_area_timeout = null
+spawn_active = null
+radius = null
+
+[node name="GrassArea4" parent="ground" instance=ExtResource("2_2qrnj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.9757, 0, -36.9592)
+min_grass = null
+max_grass = null
+grass_area_timeout = null
+spawn_active = null
+radius = null
+
+[node name="GrassArea5" parent="ground" instance=ExtResource("2_2qrnj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.6452, 0, 20.9499)
+min_grass = null
+max_grass = null
+grass_area_timeout = null
+spawn_active = null
+radius = null
+
+[node name="GrassArea6" parent="ground" instance=ExtResource("2_2qrnj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.4417, 0, 8.19144)
+min_grass = null
+max_grass = null
+grass_area_timeout = null
+spawn_active = null
+radius = null
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.00221662, 0.999998, 0, -0.999998, -0.00221662, 0, 11.2046, 0)
