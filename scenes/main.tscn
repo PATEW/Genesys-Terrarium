@@ -1,9 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://dsrh5ode2ywrw"]
+[gd_scene load_steps=8 format=3 uid="uid://dsrh5ode2ywrw"]
 
 [ext_resource type="PackedScene" uid="uid://c1ay1u8h0o466" path="res://scenes/world.tscn" id="1_ivf2h"]
 [ext_resource type="Script" path="res://scripts/AlanCam.gd" id="2_3kfad"]
 [ext_resource type="PackedScene" uid="uid://4gg7my3shlwo" path="res://scenes/animals/rabbit.tscn" id="3_jtlex"]
+[ext_resource type="Script" path="res://scenes/character_body_3d.gd" id="4_7ic66"]
 [ext_resource type="PackedScene" uid="uid://b01yqvtmpxrix" path="res://scenes/HUD/entity_info.tscn" id="4_ogi6q"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1i5pe"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_bp52n"]
 
 [node name="main" type="Node"]
 
@@ -27,6 +32,17 @@ entity_hunger = 110
 entity_thirst = 45
 entity_reproduction = 185
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.226991, 0.973897, 0, -0.973897, 0.226991, -21.7127, 37.6095, -0.653961)
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.1125, 35.105, -14.2128)
+script = ExtResource("4_7ic66")
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 0.936384, 0.350976, 0, -0.350976, 0.936384, 5.94721, 2.50448, 13.5588)
 script = ExtResource("2_3kfad")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+shape = SubResource("CapsuleShape3D_1i5pe")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D/CollisionShape3D"]
+transform = Transform3D(1, 0, 0, 0, 1.41301, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_bp52n")
