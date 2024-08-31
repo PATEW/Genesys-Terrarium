@@ -27,11 +27,17 @@ var _e = false
 var _shift = false
 var _alt = false
 
+func _ready():
+	RenderingServer.set_debug_generate_wireframes(true)
+
+
 func _input(event):
 	# Receives mouse motion
 	if event is InputEventMouseMotion:
 		_mouse_position = event.relative
-	
+	if event is InputEventKey and Input.is_key_pressed(KEY_P):
+		var vp = get_viewport()
+		vp.debug_draw = (vp.debug_draw + 1 ) % 4
 	# Receives mouse button input
 	if event is InputEventMouseButton:
 		match event.button_index:
@@ -41,7 +47,6 @@ func _input(event):
 				_vel_multiplier = clamp(_vel_multiplier * 1.1, 0.2, 20)
 			MOUSE_BUTTON_WHEEL_DOWN: # Decereases max velocity
 				_vel_multiplier = clamp(_vel_multiplier / 1.1, 0.2, 20)
-
 	# Receives key input
 	if event is InputEventKey:
 		match event.keycode:

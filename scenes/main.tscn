@@ -1,11 +1,41 @@
 [gd_scene load_steps=9 format=3 uid="uid://dsrh5ode2ywrw"]
 
-[ext_resource type="Script" path="res://scenes/main.gd" id="1_ga1cb"]
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_ga1cb"]
 [ext_resource type="PackedScene" uid="uid://c1ay1u8h0o466" path="res://scenes/world.tscn" id="1_ivf2h"]
 [ext_resource type="Script" path="res://scripts/AlanCam.gd" id="2_3kfad"]
 [ext_resource type="PackedScene" uid="uid://4gg7my3shlwo" path="res://scenes/animals/rabbit.tscn" id="3_jtlex"]
-[ext_resource type="Script" path="res://scenes/character_body_3d.gd" id="4_7ic66"]
 [ext_resource type="PackedScene" uid="uid://b01yqvtmpxrix" path="res://scenes/HUD/entity_info.tscn" id="4_ogi6q"]
+
+[sub_resource type="GDScript" id="GDScript_jdpgx"]
+script/source = "extends CharacterBody3D
+
+
+const SPEED = 5.0
+const JUMP_VELOCITY = 4.5
+
+
+func _physics_process(delta):
+	# Add the gravity.
+	if not is_on_floor():
+		velocity += get_gravity() * delta
+
+	# Handle jump.
+	if Input.is_action_just_pressed(\"ui_accept\") and is_on_floor():
+		velocity.y = JUMP_VELOCITY
+
+	# Get the input direction and handle the movement/deceleration.
+	# As good practice, you should replace UI actions with custom gameplay actions.
+	var input_dir = Input.get_vector(\"ui_left\", \"ui_right\", \"ui_up\", \"ui_down\")
+	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	if direction:
+		velocity.x = direction.x * SPEED
+		velocity.z = direction.z * SPEED
+	else:
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity.z = move_toward(velocity.z, 0, SPEED)
+
+	move_and_slide()
+"
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1i5pe"]
 
@@ -18,8 +48,8 @@ script = ExtResource("1_ga1cb")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -61.8595, 0, -65.8094)
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="world"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.747, 35.105, 38.225)
-script = ExtResource("4_7ic66")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.7276, 33.5793, 28.6081)
+script = SubResource("GDScript_jdpgx")
 
 [node name="Camera3D" type="Camera3D" parent="world/CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 0.936384, 0.350976, 0, -0.350976, 0.936384, 5.94721, 2.50448, 13.5588)
@@ -39,3 +69,6 @@ transform = Transform3D(0.03, 0, 0, 0, 0.03, 0, 0, 0, 0.03, -37.2578, 3.19098, -
 
 [node name="Rabbit2" parent="." instance=ExtResource("3_jtlex")]
 transform = Transform3D(0.03, 0, 0, 0, 0.03, 0, 0, 0, 0.03, -37.2578, 2.82012, -37.1695)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.847937, 0.530097, 0, 0.521511, -0.834204, 0.179249, 0.0950191, -0.151992, -0.983804, -32.3661, 251.819, 0)

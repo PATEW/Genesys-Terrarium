@@ -1,12 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dnk15bjp4jka"]
+[gd_scene load_steps=4 format=3 uid="uid://dnk15bjp4jka"]
 
 [ext_resource type="PackedScene" uid="uid://dm32bot7lvyxx" path="res://assets/models/grass/grass.glb" id="1_cygeb"]
 [ext_resource type="Script" path="res://scripts/grass.gd" id="2_04a6d"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_2vc0x"]
 radius = 1.0
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_qvdlh"]
 
 [node name="Grass" instance=ExtResource("1_cygeb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.26668, 0, 1.35739)
@@ -15,12 +13,3 @@ script = ExtResource("2_04a6d")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="11"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4589, -0.0695124, -1.42398)
 shape = SubResource("SphereShape3D_2vc0x")
-
-[node name="Clickable_Area" type="Area3D" parent="." index="12"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.09295, 0, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Clickable_Area" index="0"]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 1.30017, 0, -1.79614)
-shape = SubResource("SphereShape3D_qvdlh")
-
-[connection signal="input_event" from="Clickable_Area" to="." method="_on_clickable_area_input_event"]
