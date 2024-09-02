@@ -8,18 +8,17 @@ radius = 1.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_qvdlh"]
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_lmetr"]
-height = 2.01691
-radius = 1.57679
+[sub_resource type="SphereShape3D" id="SphereShape3D_eevr3"]
+radius = 0.72642
 
-[node name="Grass" instance=ExtResource("1_cygeb")]
+[node name="Grass" groups=["Grass"] instance=ExtResource("1_cygeb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.26668, 0, 1.35739)
 collision_layer = 2
 collision_mask = 17
 script = ExtResource("2_04a6d")
 
 [node name="Wall_Floor_Collision" type="CollisionShape3D" parent="." index="11"]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 1.4589, 0.189877, -1.25125)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 1.4589, 0.591663, -1.25125)
 shape = SubResource("SphereShape3D_2vc0x")
 
 [node name="Clickable_Area" type="Area3D" parent="." index="12"]
@@ -32,14 +31,14 @@ monitoring = false
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
 shape = SubResource("SphereShape3D_qvdlh")
 
-[node name="Detected_Area" type="Area3D" parent="." index="13"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.27064, 0, -1.3838)
+[node name="Detectable_Area" type="Area3D" parent="." index="13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.25742, 0, -1.36043)
 collision_layer = 2
 collision_mask = 0
 monitoring = false
 
-[node name="Detected_Collision" type="CollisionShape3D" parent="Detected_Area" index="0"]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
-shape = SubResource("CylinderShape3D_lmetr")
+[node name="Detectable_Collision" type="CollisionShape3D" parent="Detectable_Area" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.494623, 0)
+shape = SubResource("SphereShape3D_eevr3")
 
 [connection signal="input_event" from="Clickable_Area" to="." method="_on_clickable_area_input_event"]
