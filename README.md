@@ -81,8 +81,8 @@ Access and view different types of data from each simulation:
 #
 ##
 #### Name Explanation:
-Genesis = beginning
-Gene = genes in evolution 
-Sys = [computer] system
-Terrarium = simulation takes place in a terrarium
-:)
+- Genesis = beginning
+- Gene = genes in evolution 
+- Sys = [computer] system
+- Terrarium = simulation takes place in a terrarium
+- :)
