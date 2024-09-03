@@ -1,0 +1,87 @@
+[gd_scene load_steps=7 format=3 uid="uid://c1ay1u8h0o466"]
+
+[ext_resource type="Script" path="res://scripts/world.gd" id="1_nhjyf"]
+[ext_resource type="PackedScene" uid="uid://dbe54spvxre7t" path="res://scenes/grass_area.tscn" id="2_2qrnj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3m8xh"]
+albedo_color = Color(0.0135693, 0.0491381, 0.0266566, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_bxly6"]
+material = SubResource("StandardMaterial3D_3m8xh")
+top_radius = 50.0
+bottom_radius = 50.0
+height = 0.5
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_3wjc5"]
+height = 0.5
+radius = 50.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_7msjm"]
+radius = 9.389
+
+[node name="world" type="Node3D"]
+script = ExtResource("1_nhjyf")
+
+[node name="ground" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0293815, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0444223)
+mesh = SubResource("CylinderMesh_bxly6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ground"]
+shape = SubResource("CylinderShape3D_3wjc5")
+
+[node name="GrassArea" parent="ground" instance=ExtResource("2_2qrnj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.3377, 0, -14.4356)
+min_grass = null
+max_grass = null
+grass_area_timeout = null
+spawn_active = null
+radius = null
+
+[node name="spawnArea" type="CollisionShape3D" parent="ground/GrassArea"]
+shape = SubResource("CylinderShape3D_7msjm")
+
+[node name="GrassArea2" parent="ground" instance=ExtResource("2_2qrnj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.2766, 0, -14.4356)
+min_grass = null
+max_grass = null
+grass_area_timeout = null
+spawn_active = null
+radius = null
+
+[node name="GrassArea3" parent="ground" instance=ExtResource("2_2qrnj")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 7.22998, 0, 22.7175)
+min_grass = null
+max_grass = null
+grass_area_timeout = null
+spawn_active = null
+radius = null
+
+[node name="GrassArea4" parent="ground" instance=ExtResource("2_2qrnj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.9757, 0, -36.9592)
+min_grass = null
+max_grass = null
+grass_area_timeout = null
+spawn_active = null
+radius = null
+
+[node name="GrassArea5" parent="ground" instance=ExtResource("2_2qrnj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.6452, 0, 20.9499)
+min_grass = null
+max_grass = null
+grass_area_timeout = null
+spawn_active = null
+radius = null
+
+[node name="GrassArea6" parent="ground" instance=ExtResource("2_2qrnj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.4417, 0, 8.19144)
+min_grass = null
+max_grass = null
+grass_area_timeout = null
+spawn_active = null
+radius = null
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.00221662, 0.999998, 0, -0.999998, -0.00221662, 0, 11.2046, 0)

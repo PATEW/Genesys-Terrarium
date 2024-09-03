@@ -71,7 +71,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.304536, -3.81324, 0.20722)
 shape = SubResource("BoxShape3D_65vao")
 
 [node name="Geo_Rabbit" type="MeshInstance3D" parent="."]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, 0, 0)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_pogth")
 skeleton = NodePath("")
 
@@ -88,13 +88,11 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -14
 shape = SubResource("CapsuleShape3D_4q1ud")
 
 [node name="Food_Sensor_Area" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.55156, 0)
 collision_layer = 0
 collision_mask = 2
 monitorable = false
 
 [node name="Food_Sensor_Collision" type="CollisionShape3D" parent="Food_Sensor_Area"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 106.363, 0)
 shape = SubResource("CylinderShape3D_qmjns")
 
 [node name="Predator_Area" type="Area3D" parent="."]
@@ -114,6 +112,8 @@ rabbit = NodePath("../..")
 [node name="rabbitfollow" type="Node" parent="State Manager" node_paths=PackedStringArray("rabbit")]
 script = ExtResource("5_h2peh")
 rabbit = NodePath("../..")
+move_speed = null
 
 [connection signal="input_event" from="Clickable_Area" to="." method="_on_clickable_area_input_event"]
 [connection signal="area_entered" from="Food_Sensor_Area" to="." method="_on_food_sensor_area_area_entered"]
+[connection signal="body_entered" from="Food_Sensor_Area" to="." method="_on_food_sensor_area_body_entered"]

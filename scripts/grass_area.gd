@@ -6,10 +6,17 @@ class_name GrassArea
 @export var max_grass: int = 5
 @export var grass_area_timeout: float = 5
 @export var spawn_active: bool = true
+@export var radius: int = 5:
+	set(value):
+		radius = value
+		if spawnArea:
+			spawnArea.radius = radius
 
 var grass_scene = preload("res://scenes/grass.tscn")
 
-var spawnArea: CylinderShape3D
+#var spawnArea: CylinderShape3D
+@onready var spawnArea = $spawnArea
+
 var origin: Vector3
 # Called when the node enters the scene tree for the first time.
 func _ready():
