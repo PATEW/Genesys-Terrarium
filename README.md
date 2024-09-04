@@ -76,7 +76,7 @@ Access and view different types of data from each simulation:
 ## Cool Stuff
 
 - Utilizes Godot's node system for managing large numbers of entities and their interactions
-- Incorporates a robust event system (signals) for tracking and handling simulation changes
+- Incorporates a robust event system (signals) for tracking and handling behavior state changes
 - Features a modular design allowing for easy expansion and modification of species, behaviors, mutations and environmental factors
 
 ## Potential Applications / Future Work
