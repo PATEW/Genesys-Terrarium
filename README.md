@@ -28,7 +28,7 @@ Interact with individual entities within the simulation to access detailed infor
 
 ### Adaptive Behavior Systems
 
-![Adaptive behavior demonstration](extra/github_resources/rabbit_and_fox.PNG)
+![Adaptive behavior demonstration](extra/github_resources/rabbit_and_fox1.PNG)
 
 Entities inherit adaptive behaviors based on their current state and environmental conditions:
 
