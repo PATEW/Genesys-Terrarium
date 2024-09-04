@@ -1,12 +1,14 @@
 # Genesys Terrarium
 
-Genesys Terrarium is a modular ecosystem simulation created in Godot. 
+Genesys Terrarium is a modular ecosystem simulation created in Godot.
+
+Note: Most of the features written here are not implemented yet or are very basic, this is just to show the future development of the project.
 
 ## Key Features
 
 ### Dynamic Ecosystem Simulation
 
-![Ecosystem overview](https://placeholder.com/genesys-terrarium-overview.png)
+![Ecosystem overview](extra/github_resources/bun_gif_1.gif)
 
 Simulate a comprehensive ecosystem with multiple interacting species. Including:
 
@@ -16,9 +18,9 @@ Simulate a comprehensive ecosystem with multiple interacting species. Including:
 
 ### Entity Inspection and Analysis
 
-![Entity inspection interface](https://placeholder.com/entity-inspection.png)
+![Entity inspection interface](extra/github_resources/bun_gif_2.gif)
 
-Users can interact with individual entities within the simulation to access detailed information:
+Interact with individual entities within the simulation to access detailed information:
 
 - Changing status indicators (health, hunger, thirst, etc.)
 - Performance metrics (speed, hunting efficiency)
@@ -26,7 +28,7 @@ Users can interact with individual entities within the simulation to access deta
 
 ### Adaptive Behavior Systems
 
-![Adaptive behavior demonstration](https://placeholder.com/adaptive-behavior.png)
+![Adaptive behavior demonstration](extra/github_resources/rabbit_and_fox.PNG)
 
 Entities inherit adaptive behaviors based on their current state and environmental conditions:
 
@@ -36,7 +38,7 @@ Entities inherit adaptive behaviors based on their current state and environment
 
 ### Evolutionary Mechanics
 
-![Evolutionary tracking interface](https://placeholder.com/evolution-tracking.png)
+![Evolutionary tracking interface](extra/github_resources/animal_stats.png)
 
 Incorporates a genetic passdown system to simulate evolutionary processes:
 
@@ -46,7 +48,7 @@ Incorporates a genetic passdown system to simulate evolutionary processes:
 
 ### Scenario Creation and Customization
 
-![Scenario creation interface](https://placeholder.com/scenario-creation.png)
+![Scenario creation interface](extra/github_resources/map_edit.PNG)
 
 Extensive customization options:
 
@@ -56,9 +58,14 @@ Extensive customization options:
 - Ability to add in new hazards or entities during runtime
 - Fast-forward, pause, and other sim controls
 
+Use these tools to create new scenarios, such as:
+- "Putting 2 foxes against 100 rabbits"
+- "Creating multiple small islands with limited resources"
+- "Exploring the lifespan of one 'super' mutated rabbit"
+
 ### Data Analysis and Visualization
 
-![Data analysis dashboard](https://placeholder.com/data-analysis.png)
+![Data analysis dashboard](extra/github_resources/population_graph.png)
 
 Access and view different types of data from each simulation:
 
