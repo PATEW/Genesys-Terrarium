@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dolhnx4uil3ka"
-path.s3tc="res://.godot/imported/groundMud.png-61a3ffc51e40f451631d0eea0a4e6f25.s3tc.ctex"
+uid="uid://75lynq3lmmig"
+path.s3tc="res://.godot/imported/Stone01.png-792bc4fe2ddf6643fad6e23f68054751.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/materials/Devils/Textures/groundMud.png"
-dest_files=["res://.godot/imported/groundMud.png-61a3ffc51e40f451631d0eea0a4e6f25.s3tc.ctex"]
+source_file="res://assets/materials/Devils/Textures/Stone01.png"
+dest_files=["res://.godot/imported/Stone01.png-792bc4fe2ddf6643fad6e23f68054751.s3tc.ctex"]
 
 [params]
 

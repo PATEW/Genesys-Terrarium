@@ -1,11 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://dsrh5ode2ywrw"]
+[gd_scene load_steps=9 format=3 uid="uid://dsrh5ode2ywrw"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_ga1cb"]
 [ext_resource type="PackedScene" uid="uid://c1ay1u8h0o466" path="res://scenes/world.tscn" id="1_ivf2h"]
 [ext_resource type="Script" path="res://scripts/AlanCam.gd" id="2_3kfad"]
 [ext_resource type="PackedScene" uid="uid://4gg7my3shlwo" path="res://scenes/animals/rabbit.tscn" id="3_jtlex"]
 [ext_resource type="PackedScene" uid="uid://b01yqvtmpxrix" path="res://scenes/HUD/entity_info.tscn" id="4_ogi6q"]
-[ext_resource type="PackedScene" uid="uid://dbe54spvxre7t" path="res://scenes/grass_area.tscn" id="6_sy0jb"]
 
 [sub_resource type="GDScript" id="GDScript_jdpgx"]
 script/source = "extends CharacterBody3D
@@ -46,10 +45,9 @@ func _physics_process(delta):
 script = ExtResource("1_ga1cb")
 
 [node name="world" parent="." instance=ExtResource("1_ivf2h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -61.8595, 0, -65.8094)
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="world"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.7276, 33.5793, 28.6081)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13.5322, 7.47599)
 script = SubResource("GDScript_jdpgx")
 
 [node name="Camera3D" type="Camera3D" parent="world/CharacterBody3D"]
@@ -78,6 +76,3 @@ transform = Transform3D(0.03, 0, 0, 0, 0.03, 0, 0, 0, 0.03, -37.2578, 2.82012, -
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.847937, 0.530097, 0, 0.521511, -0.834204, 0.179249, 0.0950191, -0.151992, -0.983804, -32.3661, 251.819, 0)
-
-[node name="GrassArea" parent="." instance=ExtResource("6_sy0jb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.3281, 1.45176, -5.54376)

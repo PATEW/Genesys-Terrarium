@@ -3,20 +3,20 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dco5g640xhp84"
-path="res://.godot/imported/groundMud.fbx-c0611b054e82d79849188f52c6bfaf5f.scn"
+uid="uid://brcrudso3qixp"
+path="res://.godot/imported/grass_blender.glb-9c83d2f2697428c4ca7e6e8058e7c82a.scn"
 
 [deps]
 
-source_file="res://assets/materials/Devils/groundMud.fbx"
-dest_files=["res://.godot/imported/groundMud.fbx-c0611b054e82d79849188f52c6bfaf5f.scn"]
+source_file="res://assets/models/grass/grass_blender.glb"
+dest_files=["res://.godot/imported/grass_blender.glb-9c83d2f2697428c4ca7e6e8058e7c82a.scn"]
 
 [params]
 
 nodes/root_type=""
 nodes/root_name=""
 nodes/apply_root_scale=true
-nodes/root_scale=1.0
+nodes/root_scale=0.06
 nodes/import_as_skeleton_bones=false
 meshes/ensure_tangents=true
 meshes/generate_lods=true
@@ -27,11 +27,10 @@ meshes/force_disable_compression=false
 skins/use_named_skins=true
 animation/import=true
 animation/fps=30
-animation/trimming=true
+animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={}
-fbx/importer=0
-fbx/allow_geometry_helper_nodes=false
-fbx/embedded_image_handling=1
+gltf/naming_version=1
+gltf/embedded_image_handling=1

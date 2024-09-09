@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dco5g640xhp84"
-path="res://.godot/imported/groundMud.fbx-c0611b054e82d79849188f52c6bfaf5f.scn"
+uid="uid://ck4dcgth8fcql"
+path="res://.godot/imported/wallBrick02.fbx-fbdf83db81b47975cc4bfaf5197672db.scn"
 
 [deps]
 
-source_file="res://assets/materials/Devils/groundMud.fbx"
-dest_files=["res://.godot/imported/groundMud.fbx-c0611b054e82d79849188f52c6bfaf5f.scn"]
+source_file="res://assets/materials/Devils/wallBrick02.fbx"
+dest_files=["res://.godot/imported/wallBrick02.fbx-fbdf83db81b47975cc4bfaf5197672db.scn"]
 
 [params]
 

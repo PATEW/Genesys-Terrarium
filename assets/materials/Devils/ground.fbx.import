@@ -3,7 +3,7 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://d2brnvbfjbcv3"
+uid="uid://kvpyekjruoro"
 path="res://.godot/imported/ground.fbx-1aaec55e3a2df100243b5568d2adf5fe.scn"
 
 [deps]
@@ -16,7 +16,7 @@ dest_files=["res://.godot/imported/ground.fbx-1aaec55e3a2df100243b5568d2adf5fe.s
 nodes/root_type=""
 nodes/root_name=""
 nodes/apply_root_scale=true
-nodes/root_scale=0.5
+nodes/root_scale=1.0
 nodes/import_as_skeleton_bones=false
 meshes/ensure_tangents=true
 meshes/generate_lods=true

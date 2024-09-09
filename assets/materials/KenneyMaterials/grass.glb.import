@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dco5g640xhp84"
-path="res://.godot/imported/groundMud.fbx-c0611b054e82d79849188f52c6bfaf5f.scn"
+uid="uid://ca8ruicnmbk0o"
+path="res://.godot/imported/grass.glb-8707ecb796a4fe0d625643aa22bd9e1a.scn"
 
 [deps]
 
-source_file="res://assets/materials/Devils/groundMud.fbx"
-dest_files=["res://.godot/imported/groundMud.fbx-c0611b054e82d79849188f52c6bfaf5f.scn"]
+source_file="res://assets/materials/KenneyMaterials/grass.glb"
+dest_files=["res://.godot/imported/grass.glb-8707ecb796a4fe0d625643aa22bd9e1a.scn"]
 
 [params]
 
@@ -27,11 +27,10 @@ meshes/force_disable_compression=false
 skins/use_named_skins=true
 animation/import=true
 animation/fps=30
-animation/trimming=true
+animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={}
-fbx/importer=0
-fbx/allow_geometry_helper_nodes=false
-fbx/embedded_image_handling=1
+gltf/naming_version=1
+gltf/embedded_image_handling=1

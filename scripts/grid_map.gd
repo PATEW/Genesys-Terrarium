@@ -1,4 +1,5 @@
 extends GridMap
+class_name WorldMap
 
 
 @export var width = 128
@@ -10,6 +11,13 @@ extends GridMap
 
 @export var noise: FastNoiseLite
 @export var moisture_noise: FastNoiseLite
+@export var temperature_noise: FastNoiseLite
+
+var max_grass_amount = 0
+
+@export var mud_threshold = 0.4  # New threshold for mud generation
+
+var rng = RandomNumberGenerator.new()
 
 
 var tiles_available = {}
@@ -25,67 +33,86 @@ func _ready():
 		moisture_noise = FastNoiseLite.new()
 		moisture_noise.seed = randi()
 		moisture_noise.frequency = 0.01
+		
+	if temperature_noise == null:
+		temperature_noise = FastNoiseLite.new()
+		temperature_noise.seed = randi()
+		temperature_noise.frequency = 0.02
+	
 	get_all_tiles()
 	
-	if !tiles_available.is_empty():
-		generate_terrain()
-		clean_terrain()
-		generate_walls()
+
+func get_lowest_block():
+	var lowest_tile_height = 999999999999 
+	for cell in get_used_cells():
+		lowest_tile_height = abs(min(lowest_tile_height, cell.y))
+	return lowest_tile_height
 
 func generate_walls():
+	var lowest_tile_height = get_lowest_block()
 	print(cell_size)
+	print(lowest_tile_height)
 	var wall_scenes = [
-		create_wall(cell_size * Vector3(0, offside_wall_height, length / 2 ),Vector3(0.1 * cell_size.x, offside_wall_height, length * cell_size.z)),
-		create_wall(cell_size * Vector3(width, offside_wall_height , length / 2), Vector3(0.1, offside_wall_height, length * cell_size.z)),
-		create_wall(cell_size * Vector3(width / 2 , offside_wall_height, 0), Vector3(width * cell_size.x, offside_wall_height, 0.1)),
-		create_wall(cell_size * Vector3(width / 2 , offside_wall_height , length  ), Vector3(width * cell_size.x, offside_wall_height, 0.1)),
+		create_wall(cell_size * Vector3(0, lowest_tile_height, -length / 2 ),Vector3(0.1 * cell_size.x, offside_wall_height, length * cell_size.z)),
+		create_wall(cell_size * Vector3(-width, lowest_tile_height , -length / 2), Vector3(0.1, offside_wall_height, length * cell_size.z)),
+		create_wall(cell_size * Vector3(-width/2 , lowest_tile_height, 0), Vector3(width * cell_size.x, offside_wall_height, 0.1)),
+		create_wall(cell_size * Vector3(-width/2 , lowest_tile_height ,-length ), Vector3(width * cell_size.x, offside_wall_height, 0.1)),
 	]
 	
 	for wall in wall_scenes:
 		add_child(wall)
 
-func create_wall(position: Vector3, size:Vector3):
-	var wall = StaticBody3D.new()
-	var collision_shape = CollisionShape3D.new()
-	var shape = BoxShape3D.new()
+func get_all_tiles():
+	var mesh_library = get_mesh_library()
+	if mesh_library == null:
+		print("No MeshLibrary assigned to this GridMap")
+		return []
 	
-	shape.size = size 
-	collision_shape.shape = shape
-	wall.add_child(collision_shape)
-	wall.position = position
-	
-	# Create mesh for visualization
-	#var mesh_instance = MeshInstance3D.new()
-	#var mesh = BoxMesh.new()
-	#mesh.size = size 
-	#mesh_instance.mesh = mesh
-	
-	# Create material for the mesh
-	#var material = StandardMaterial3D.new()
-	#material.albedo_color = Color(1,0,0,1)
-	#material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
-	#mesh_instance.material_override = material
-	
-	#wall.add_child(mesh_instance)
-	return wall
-	
+	var tiles = {}
+	for item_id in mesh_library.get_item_list():
+		var item_name = mesh_library.get_item_name(item_id)
+		tiles_available[item_name] = item_id
+
+
+func get_tile_from_noise(height, moisture, temperature):
+	if tiles_available.is_empty():
+		return
+
+	if height < -2 and moisture > water_moist_level:
+		return "water"
+	if moisture < water_moist_level and height > 1 and temperature > 0:
+		return "mud" 
+	return "grass"
+
 
 func generate_terrain():
+	generate_inital_tiles()
+	clean_terrain()
+	generate_walls()
+
+
+func generate_inital_tiles():
 	for x in range(width):
 		for z in range(length):
-			var height = noise.get_noise_2d(x,z) * amplitude
-			var moisture = moisture_noise.get_noise_2d(x,z)
+			var x_pos = x - width
+			var z_pos = z - length
+			var height = noise.get_noise_2d(x_pos,z_pos) * amplitude
+			var moisture = moisture_noise.get_noise_2d(x_pos,z_pos)
+			var temperature = temperature_noise.get_noise_2d(x_pos, z_pos)
 			
-			var tile_type = get_tile_from_noise(height, moisture)
-			set_cell_item(Vector3i(x,round(height),z),tiles_available[tile_type])
-			tiles_generated[Vector2(x,z)] = {
+			var tile_type = get_tile_from_noise(height, moisture, temperature)
+			set_cell_item(Vector3i(x_pos,round(height),z_pos),tiles_available[tile_type])
+			tiles_generated[Vector2(x_pos,z_pos)] = {
 				"height": height,
-				"type": tile_type
+				"type": tile_type,
+				"moisture": moisture,
+				"temperature": temperature_noise
 			}
-			
+			print("tile: ", Vector3i(x_pos,round(height),z_pos))
+
 func clean_terrain():
 	for tile in tiles_generated:
-		if tiles_generated[tile]["type"] == "ground":
+		if tiles_generated[tile]["type"] == "grass":
 			continue
 		var pos = Vector2(tile.x,tile.y)
 		var height= tiles_generated[tile]["height"]
@@ -104,33 +131,20 @@ func clean_terrain():
 					water_count += 1
 				
 		if water_count < 3:
-			set_cell_item(Vector3i(tile.x,height,tile.y), tiles_available["ground"])
-			tiles_generated[tile]["type"] = "ground"
+			set_cell_item(Vector3i(tile.x,height,tile.y), tiles_available["mud"])
+			tiles_generated[tile]["type"] = "mud"
 
-func get_all_tiles():
-	var mesh_library = get_mesh_library()
-	if mesh_library == null:
-		print("No MeshLibrary assigned to this GridMap")
-		return []
+func create_wall(position: Vector3, size:Vector3):
+	var wall = StaticBody3D.new()
+	var collision_shape = CollisionShape3D.new()
+	var shape = BoxShape3D.new()
 	
-	var tiles = {}
-	for item_id in mesh_library.get_item_list():
-		var item_name = mesh_library.get_item_name(item_id)
-		tiles_available[item_name] = item_id
+	shape.size = size 
+	collision_shape.shape = shape
+	wall.add_child(collision_shape)
+	wall.position = position
 	
-	
-func get_tile_from_noise(height, moisture):
-	if !tiles_available.has("water") and !tiles_available.has("ground"):
-		return;
-	if !tiles_available.has("ground"):
-		return
-	if height < -2 and moisture > water_moist_level:
-		return "water"
-	else:
-		return "ground"
+	return wall
 
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func get_tiles_generated():
+	return tiles_generated
