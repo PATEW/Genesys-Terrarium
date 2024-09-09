@@ -9,5 +9,5 @@ radius = 8.482
 [node name="GrassArea" type="Area3D"]
 script = ExtResource("1_a5wl4")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="spawnArea" type="CollisionShape3D" parent="."]
 shape = SubResource("CylinderShape3D_5et11")

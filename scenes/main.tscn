@@ -66,7 +66,7 @@ mesh = SubResource("CapsuleMesh_bp52n")
 [node name="entity_info" parent="." instance=ExtResource("4_ogi6q")]
 
 [node name="Rabbit" parent="." instance=ExtResource("3_jtlex")]
-transform = Transform3D(0.03, 0, 0, 0, 0.03, 0, 0, 0, 0.03, -37.2578, 3.19098, -19.8368)
+transform = Transform3D(0.03, 0, 0, 0, 0.03, 0, 0, 0, 0.03, -23.1865, 3.19098, -5.55036)
 entity_name = "udifa"
 entity_health = 45
 entity_hunger = 50
@@ -74,10 +74,10 @@ entity_thirst = 125
 entity_reproduction = 175
 
 [node name="Rabbit2" parent="." instance=ExtResource("3_jtlex")]
-transform = Transform3D(0.03, 0, 0, 0, 0.03, 0, 0, 0, 0.03, -37.2578, 2.82012, -37.1695)
+transform = Transform3D(0.03, 0, 0, 0, 0.03, 0, 0, 0, 0.03, -13.7393, 2.82012, -6.29647)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.847937, 0.530097, 0, 0.521511, -0.834204, 0.179249, 0.0950191, -0.151992, -0.983804, -32.3661, 251.819, 0)
 
 [node name="GrassArea" parent="." instance=ExtResource("6_sy0jb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.3281, 1.45176, -5.54376)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.3281, 1.45176, -8.56409)
