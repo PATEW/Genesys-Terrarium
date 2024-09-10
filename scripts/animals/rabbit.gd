@@ -7,7 +7,7 @@ extends CharacterBody3D
 @export var entity_reproduction: int = 0
 
 @export var move_speed := 100.0
-@export var stop_distance := 1
+@export var stop_distance := 3
 
 var move_direction : Vector3
 var wander_time : float
@@ -33,9 +33,14 @@ func _on_clickable_area_input_event(_camera, event, _event_position, _normal, _s
 
 
 func _on_food_sensor_area_area_entered(area):
-	current_grass_target = area.get_parent()
-	state_chart.send_event("grass_entered")
+	if current_grass_target == null:
+		current_grass_target = area.get_parent()
+		state_chart.send_event("grass_entered")
 
+
+# +++++++ IDLE STATE +++++++
+func _on_idle_state_entered():
+	randomize_wander()
 
 func _on_idle_state_processing(delta):
 	velocity = -global_transform.basis.z * move_speed
@@ -50,18 +55,31 @@ func randomize_wander():
 	wander_time = randf_range(1, 3)
 
 
-func _on_idle_state_entered():
-	randomize_wander()
 
-
+# +++++++ OBSERVING STATE +++++++
 func _on_observing_state_processing(delta):
-	look_at(current_grass_target.global_position)
-	var direction = current_grass_target.global_position - global_position
+	var target_position = current_grass_target.global_position
+	var self_position = global_position
+	
+	# Calculate direction in the XZ plane
+	var direction = Vector3(target_position.x - self_position.x, 0, target_position.z - self_position.z)
+	
+	# Only update rotation if we're not too close to the target
+	if direction.length() > 0.01:
+		var look_at_point = self_position + direction
+		look_at(look_at_point, Vector3.UP)
+	
+	# Calculate distance to target
 	var distance = direction.length()
-
+	
 	if distance > stop_distance:
 		# Move towards the grass
-		velocity = direction.normalized() * move_speed
+		direction = direction.normalized()
+		velocity = direction * move_speed * delta
 	else:
 		# Stop when close enough
 		velocity = Vector3.ZERO
+		state_chart.send_event("grass_eaten")
+
+func _on_observing_state_exited():
+	current_grass_target = null
