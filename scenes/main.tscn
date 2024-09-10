@@ -63,7 +63,4 @@ mesh = SubResource("CapsuleMesh_bp52n")
 
 [node name="entity_info" parent="." instance=ExtResource("4_ogi6q")]
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.847937, 0.530097, 0, 0.521511, -0.834204, 0.179249, 0.0950191, -0.151992, -0.983804, -32.3661, 251.819, 0)
-
 [node name="Rabbit" parent="." instance=ExtResource("3_jtlex")]
