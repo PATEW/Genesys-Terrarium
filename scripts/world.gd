@@ -2,7 +2,7 @@ extends Node3D
 
 @export var grass: Resource = preload("res://scenes/textures/grass_kennedy.tscn")
 @export var tree: Resource = preload("res://scenes/textures/tree.tscn")
-
+@export var entities: Array[EntityResource] = []
 var rng = RandomNumberGenerator.new()
 
 @export_range(0.0, 1.0, 0.01) var grass_spawn_rate:float =  0.02
@@ -33,6 +33,8 @@ func _ready():
 	tree_neighbors = initialize_tree_neighbors()
 	spawn_grass()
 	spawn_tree()
+	if entities:
+		spawn_entities()
 
 func initialize_grass_tile_dictionary():
 	var tiles_generated = map.get_tiles_generated()
@@ -59,6 +61,7 @@ func there_is_neighbor_tree(pos):
 			print("There is neighbor tree")
 			return true 
 	return false
+
 
 func spawn_grass():
 	var tiles_generated = map.get_tiles_generated()
@@ -113,3 +116,38 @@ func spawn_tree():
 				tree_instance.scale = Vector3(scale_factor, scale_factor, scale_factor)
 				tree_neighbors[tile] = true
 				
+func spawn_entities():
+	for entity in entities:
+		for i in range(entity.count):
+			spawn_single_entity(entity)
+	
+func spawn_single_entity(entity_resource: EntityResource):
+	var entity_scene = entity_resource.entity_scene
+	var entity_instance = entity_scene.instantiate()
+	
+	var spawn_pos = get_random_spawn(entity_resource)
+	
+	add_child(entity_instance)
+	entity_instance.global_transform.origin = spawn_pos
+	
+	entity_instance.scale = Vector3.ONE * entity_resource.scale_factor
+		
+
+
+func get_random_spawn(entity_resource: EntityResource):
+	var attempts = 0
+	var max_attempts = 100
+	var tiles_generated = map.get_tiles_generated()
+	
+	while attempts < max_attempts:
+		var random_tile = tiles_generated.keys()[rng.randi() % tiles_generated.size()]
+		var height = tiles_generated[random_tile]["height"]
+		
+		if tiles_generated[random_tile]["type"] == "grass" or tiles_generated[random_tile]["type"] == "mud":
+			var world_pos = map.to_global(map.map_to_local(Vector3i(random_tile.x, height, random_tile.y)))
+			world_pos.y += 2
+			return world_pos
+		attempts += 1
+	
+	print("Warning could not find position for entity")
+	return Vector3.ZERO

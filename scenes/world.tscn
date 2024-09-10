@@ -1,9 +1,18 @@
-[gd_scene load_steps=8 format=3 uid="uid://c1ay1u8h0o466"]
+[gd_scene load_steps=12 format=3 uid="uid://cy67m4kab6mqp"]
 
 [ext_resource type="MeshLibrary" uid="uid://tuw2yq2wun46" path="res://mesh_library/tile.tres" id="1_6v1tl"]
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_hc15n"]
 [ext_resource type="Script" path="res://scripts/grid_map.gd" id="2_2u1xe"]
 [ext_resource type="Script" path="res://scripts/AlanCam.gd" id="3_cyrsn"]
+[ext_resource type="PackedScene" uid="uid://4gg7my3shlwo" path="res://scenes/animals/rabbit.tscn" id="3_oqjcm"]
+[ext_resource type="Script" path="res://scripts/entity_resource.gd" id="5_8y28i"]
+[ext_resource type="PackedScene" uid="uid://b01yqvtmpxrix" path="res://scenes/HUD/entity_info.tscn" id="7_1q7d2"]
+
+[sub_resource type="Resource" id="Resource_yo45p"]
+script = ExtResource("5_8y28i")
+entity_scene = ExtResource("3_oqjcm")
+count = 11
+scale_factor = 0.004
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_pc61q"]
 
@@ -16,6 +25,7 @@ frequency = 0.0113
 
 [node name="world" type="Node3D"]
 script = ExtResource("1_hc15n")
+entities = Array[ExtResource("5_8y28i")]([SubResource("Resource_yo45p")])
 grass_spawn_rate = 0.05
 
 [node name="WorldMap" type="GridMap" parent="."]
@@ -37,3 +47,5 @@ script = ExtResource("3_cyrsn")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.037289, 0.999305, 0, -0.999305, -0.037289, 0, 712.41, 0)
+
+[node name="entity_info" parent="." instance=ExtResource("7_1q7d2")]

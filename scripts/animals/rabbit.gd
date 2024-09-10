@@ -22,7 +22,10 @@ signal rabbit_clicked(name: String, species: String, health: int, hunger: int, t
 func _ready():
 	rabbit_clicked.connect(entity_info.open_and_update_menu)
 
-func _physics_process(_delta):
+func _physics_process(delta):
+	if not is_on_floor():
+		velocity += get_gravity() * delta
+		
 	move_and_slide()
 
 func _on_clickable_area_input_event(_camera, event, _event_position, _normal, _shape_idx):
@@ -43,7 +46,8 @@ func _on_idle_state_entered():
 	randomize_wander()
 
 func _on_idle_state_processing(delta):
-	velocity = -global_transform.basis.z * move_speed
+	velocity.z = -global_transform.basis.z.z * move_speed
+	velocity.x = -global_transform.basis.z.x * move_speed
 	
 	if wander_time > 0:
 		wander_time -= delta
