@@ -1,18 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://dnk15bjp4jka"]
+[gd_scene load_steps=5 format=3 uid="uid://ccy0u8hf7gibq"]
 
-[ext_resource type="PackedScene" uid="uid://dm32bot7lvyxx" path="res://assets/models/grass/grass.glb" id="1_cygeb"]
-[ext_resource type="Script" path="res://scripts/grass.gd" id="2_04a6d"]
+[ext_resource type="PackedScene" uid="uid://dm32bot7lvyxx" path="res://assets/models/grass/grass.glb" id="1_g08oj"]
+[ext_resource type="Script" path="res://scripts/grass.gd" id="2_njw25"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_2vc0x"]
 radius = 1.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_qvdlh"]
 
-[node name="Grass" groups=["Grass"] instance=ExtResource("1_cygeb")]
+[node name="Grass" groups=["Grass"] instance=ExtResource("1_g08oj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00429785, 0, -0.0484303)
 collision_layer = 2
 collision_mask = 17
-script = ExtResource("2_04a6d")
+script = ExtResource("2_njw25")
 
 [node name="Wall_Floor_Collision" type="CollisionShape3D" parent="." index="11"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.131644, 0.591663, -0.0808058)

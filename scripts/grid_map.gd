@@ -13,11 +13,8 @@ class_name WorldMap
 @export var moisture_noise: FastNoiseLite
 @export var temperature_noise: FastNoiseLite
 
-var max_grass_amount = 0
 
 @export var mud_threshold = 0.4  # New threshold for mud generation
-
-var rng = RandomNumberGenerator.new()
 
 
 var tiles_available = {}
@@ -43,7 +40,7 @@ func _ready():
 	
 
 func get_lowest_block():
-	var lowest_tile_height = 999999999999 
+	var lowest_tile_height = INF 
 	for cell in get_used_cells():
 		lowest_tile_height = abs(min(lowest_tile_height, cell.y))
 	return lowest_tile_height
@@ -63,14 +60,13 @@ func generate_walls():
 		add_child(wall)
 
 func get_all_tiles():
-	var mesh_library = get_mesh_library()
-	if mesh_library == null:
+	var mesh = get_mesh_library()
+	if mesh == null:
 		print("No MeshLibrary assigned to this GridMap")
 		return []
 	
-	var tiles = {}
-	for item_id in mesh_library.get_item_list():
-		var item_name = mesh_library.get_item_name(item_id)
+	for item_id in mesh.get_item_list():
+		var item_name = mesh.get_item_name(item_id)
 		tiles_available[item_name] = item_id
 
 
@@ -108,7 +104,6 @@ func generate_inital_tiles():
 				"moisture": moisture,
 				"temperature": temperature_noise
 			}
-			print("tile: ", Vector3i(x_pos,round(height),z_pos))
 
 func clean_terrain():
 	for tile in tiles_generated:
@@ -134,7 +129,7 @@ func clean_terrain():
 			set_cell_item(Vector3i(tile.x,height,tile.y), tiles_available["mud"])
 			tiles_generated[tile]["type"] = "mud"
 
-func create_wall(position: Vector3, size:Vector3):
+func create_wall(pos: Vector3, size:Vector3):
 	var wall = StaticBody3D.new()
 	var collision_shape = CollisionShape3D.new()
 	var shape = BoxShape3D.new()
@@ -142,7 +137,7 @@ func create_wall(position: Vector3, size:Vector3):
 	shape.size = size 
 	collision_shape.shape = shape
 	wall.add_child(collision_shape)
-	wall.position = position
+	wall.position = pos
 	
 	return wall
 

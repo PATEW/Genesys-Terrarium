@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cps6bdm80m8h8"]
+
+[ext_resource type="PackedScene" uid="uid://brcrudso3qixp" path="res://assets/models/grass/grass_blender.glb" id="1_hoofb"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="grass_blender" parent="." instance=ExtResource("1_hoofb")]

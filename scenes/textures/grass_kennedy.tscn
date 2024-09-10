@@ -1,11 +1,11 @@
-[gd_scene load_steps=7 format=4 uid="uid://bbp4bsmv7qbvp"]
+[gd_scene load_steps=7 format=4 uid="uid://l00o88hlksgi"]
 
-[ext_resource type="Texture2D" uid="uid://bcn3oa68fgjws" path="res://assets/materials/KenneyMaterials/Textures/colormap.png" id="1_ebwr0"]
+[ext_resource type="Texture2D" uid="uid://bcn3oa68fgjws" path="res://assets/materials/KenneyMaterials/Textures/colormap.png" id="1_ahwoh"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yguqs"]
 resource_name = "colormap"
 cull_mode = 2
-albedo_texture = ExtResource("1_ebwr0")
+albedo_texture = ExtResource("1_ahwoh")
 texture_filter = 2
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_eiw45"]
