@@ -2,7 +2,7 @@
 
 Genesys Terrarium is a modular ecosystem simulation created in Godot.
 
-Note: Most of the features written here are not implemented yet or are very basic, this is just to show the future development of the project.
+Note: Most of the features written here are not implemented yet or are still very basic, this is just to show the planned features of the project. This project is on indefinite hold while we finish grad school 😴😴
 
 ## Key Features
 
@@ -10,7 +10,7 @@ Note: Most of the features written here are not implemented yet or are very basi
 
 ![Ecosystem overview](extra/github_resources/bun_gif_1.gif)
 
-Simulate a comprehensive ecosystem with multiple interacting species. Including:
+Simulates a comprehensive ecosystem with multiple interacting species. Including:
 
 - Diverse plants and animals with distinct behaviors and needs
 - Predator-prey relationships with state-driven interactions
@@ -50,7 +50,7 @@ Incorporates a genetic passdown system to simulate evolutionary processes:
 
 ![Scenario creation interface](extra/github_resources/map_edit.PNG)
 
-Extensive customization options:
+Some Customization options:
 
 - Built-in map editor for creating diverse environments
 - Procedural generation capabilities for randomized scenarios
@@ -58,7 +58,7 @@ Extensive customization options:
 - Ability to add in new hazards or entities during runtime
 - Fast-forward, pause, and other sim controls
 
-Use these tools to create new scenarios, such as:
+Examples of 'fine-tuned' initial conditions:
 - "Putting 2 foxes against 100 rabbits"
 - "Creating multiple small islands with limited resources"
 - "Exploring the lifespan of one 'super' mutated rabbit"
@@ -73,7 +73,7 @@ Access and view different types of data from each simulation:
 - Resource availability and consumption metrics
 - Customizable graphs and charts for visualizing simulation data
 
-## Cool Stuff
+## Other Stuff
 
 - Utilizes Godot's node system for managing large numbers of entities and their interactions
 - Incorporates a robust event system (signals) for tracking and handling behavior state changes
@@ -84,12 +84,3 @@ Access and view different types of data from each simulation:
 - Incorporate reinforcement learning over different generations
 - Prototype for a more specialized state-based environmental simulation
 - Demonstration of AI and data visualization capabilities in an interactive, real-time environment
-
-#
-##
-#### Name Explanation:
-- Genesis = beginning
-- Gene = genes in evolution 
-- Sys = [computer] system
-- Terrarium = simulation takes place in a terrarium
-- :)
